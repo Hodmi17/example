@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Number Game</title>
+</head>
+
+<style>
+  .container{ 
+
+    background-image: url("Number.jpg"); 
+    height: 900px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    text-align: center;
+    justify-content::
+    
+  }
+  #label{
+      font-size: x-large;
+      color: seashell;
+
+  }
+#attempt{
+  box-sizing: border-box;
+  font-size: xx-large;
+  color: rgb(46, 250, 247);
+  float: center;
+  text-align: center;
+}
+#score{
+  font-size: xx-large;
+  color: rgb(46,250,247);
+  float: center;
+  text-align: center;
+}
+#computerScore{
+  font-size: xx-large;
+  color: rgb(46,250,247);
+  float: center;
+  text-align: center;
+}
+
+
+
+</style>
+<body >
+  <div class="container">
+<label id= "label"> Guess a number between 1 - 100 </label>
+<input type="text" id="guessfield">
+<input type="submit" id="submitguess">
+<button type="button" onClick="window.location.reload();">Restart</button>
+<div id="headerCont">
+  
+  <div id="attempt" >
+    <p>Attempt:<p> 
+   <p id="tries"> </p>
+   
+     
+  </div>
+  
+  <div id="score">
+    <p>Score: </p>
+    <p id="points"> </p>
+  
+    
+  </div>
+
+  <div id= "computerScore">
+    <p>Computer Score: </p>
+    <p id="randomS"></p>
+  
+    
+  </div>
+   
+
+    <p id= "correct"> </p>
+ 
+
+</div>
+<div>
+    <p id= "higher"> </p>
+
+</div>
+<div >
+    <p id= "lower"></p>
+ 
+</div>
+</div>
+
+<div id= "Guess Higher"></div>
+</div>
+<script>
+
+var bodyC = document.getElementsByTagName("body")
+var guess = document.getElementById("submitguess");
+var randomNumber = Math.floor(Math.random() * 100);
+console.log(randomNumber);
+
+
+function newScores(){
+  var newuserScore = document.getElementById("points")
+  var newuserAttempt = document.getElementById("tries")
+  var newuserCom = document.getElementById("randomS")
+  newuserScore.innerHTML = userscore 
+  newuserCom.innerHTML = computerscore
+  
+  newuserAttempt.innerHTML = attempts
+
+ 
+}
+
+var attempts = 10;
+var userscore = 0;
+var computerscore = 0;
+
+
+var right = document.getElementById("correct");
+var more = document.getElementById("higher");
+var less = document.getElementById("lower");
+
+
+var correctText = document.createTextNode("Congratulation!!!You got it right")
+var higherText = document.createTextNode("Guess-Higher")
+var lowerText = document.createTextNode("Guess-Lower")
+
+
+
+
+
+guess.addEventListener("click", function() { 
+
+  var userguess = document.getElementById("guessfield").value; 
+
+if(userguess == randomNumber){ 
+
+    // right.style.visibility = "visible";
+  right.style.backgroundColor= "yellow";
+  
+  right.appendChild(correctText)
+
+function hideText(){
+    right.style.visibility = "hidden";
+}
+setTimeout(hideText, 5000)
+
+
+  userscore++
+  newScores();
+  computerscore++
+
+  
+} if(userguess > randomNumber){
+   
+
+  less.style.backgroundColor = "pink"
+ 
+  less.appendChild(lowerText)
+  attempts--
+  computerscore++
+  newScores();
+  console.log(lowerText)
+  function hideText(){
+    less.style.visibility = "hidden";
+    
+}
+setTimeout(hideText, 500)
+
+
+  
+} if(userguess < randomNumber){
+  
+  more.style.backgroundColor= "purple";
+  more.appendChild(higherText)
+
+  attempts--
+  computerscore++
+  newScores();
+
+  console.log(higherText)
+  function hideText(){
+    more.style.visibility = "hidden";
+}
+setTimeout(hideText, 500)
+
+
+} if(computerscore != userguess && attempts < 0){
+  document.write("Game Over")
+}
+});
+
+
+
+</script>
+</body>
+</html>
